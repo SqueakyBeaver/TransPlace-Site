@@ -1,0 +1,43 @@
+@import url(theme.css);
+
+#card-content {
+  color: var(--bg);
+  background-color: var(--content-bg);
+  padding: 1rem;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 3%;
+  font-size: 32ppt;
+  font-weight: 800;
+}
+
+#card-content img {
+  padding: none;
+  margin: none;
+}
+
+#section-separator {
+  margin-bottom: 4px;
+  background-color: var(--on-surface);
+  color: var(--surface);
+}
+
+#section-separator h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+#content-title {
+  background-color: var(--surface-raised);
+  color: var(--on-surface-raised);
+  padding: none;
+  margin: none;
+  display: flex;
+  flex-direction: column;
+}
+
+#content-card {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  border: none;
+}

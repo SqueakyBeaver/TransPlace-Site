@@ -1,0 +1,19 @@
+:root {
+    --flag-blue: #5bcefa;
+    --flag-pink: #f5a9b8;
+    --flag-white: #ffffff;
+    --on-blue: #0b3444;
+    --on-pink: #58323a;
+    --on-white: #353535;
+    --navbar-color: var(--flag-pink);
+    --footer-color: var(--flag-blue);
+    --on-navbar: var(--on-pink);
+    --on-footer: var(--on-blue);
+    --bg: #273033;
+    --on-bg: #8aacb7;
+    --content-bg: #1899cc;
+    --surface: #104154;
+    --on-surface: #6dbede;
+    --surface-raised: #47a8ce;
+    --on-surface-raised: #023245;
+}

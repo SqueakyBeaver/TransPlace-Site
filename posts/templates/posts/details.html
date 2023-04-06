@@ -1,0 +1,89 @@
+{% extends 'core/base.html' %}
+
+{% block title %} About Us {% endblock %}
+
+{% block content %}
+
+{% load static %}
+<link href="{% static 'css/posts.css' %}" rel="stylesheet">
+
+<div id="content">
+    <div id="card-content" class="rounded">
+        <div id="section-separator" class="container-fluid rounded card-title">
+            <h1>{{ post.title }}</h1>
+        </div>
+
+
+        <div id="content-card" class="card mb-3">
+
+            <div class="card-header">
+                {{ post.message_type }}
+
+                {% if post.reddit_url %}
+                <br><a href="{{ post.reddit_url }}">View on reddit</a>
+                {% endif %}
+
+            </div>
+
+            {% if post.reddit_url %}
+            <div class="">
+
+                {% if post.file_url %}
+
+                <div class="">
+                    <img src="{{ post.file_url }}" class="rounded-4 img-fluid" alt="Trans Flag">
+                </div>
+
+                {% else %}
+                <div class="">
+                    <img src="https://cdn.discordapp.com/icons/959551566388547676/a7df59d619696a88aea5032300166c19.webp?size=512"
+                        class="rounded-4 img-fluid" alt="TransPlace Logo">
+                </div>
+                {% endif %}
+
+            </div>
+            {% else %}
+
+            <div class="row g-0">
+
+                <div class="col-md-8">
+
+                    <div class="card-body">
+                        <h5 id="content-title" class="card-title rounded d-lg-flex">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content|truncatechars:100|linebreaks }}</p>
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+                    <h5 id="content-title" class="card-title rounded d-lg-flex">{{ post.title }}</h5>
+                </div>
+
+
+                {% if post.file_url %}
+
+                <div class="col-md-4">
+                    <img src="{{ post.file_url }}" class="rounded-4" alt="Trans Flag">
+                </div>
+
+                {% else %}
+                <div class="col-md-4">
+                    <img src="https://cdn.discordapp.com/icons/959551566388547676/a7df59d619696a88aea5032300166c19.webp?size=512"
+                        class="img-fluid rounded-4" alt="TransPlace Logo">
+                </div>
+                {% endif %}
+
+            </div>
+            {% endif %}
+
+            <div class="card-footer">
+                {{ post.created_at|timesince }} ago
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

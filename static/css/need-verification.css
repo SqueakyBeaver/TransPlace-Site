@@ -1,0 +1,35 @@
+@import url(theme.css);
+
+#card-content {
+    color: var(--bg);
+    background-color: var(--content-bg);
+    padding: 3%;
+    margin: 3%;
+}
+
+#content a:link {
+    color: var(--flag-white);
+}
+
+
+#section-separator {
+  margin-bottom: 4px;
+  background-color: var(--on-surface);
+  color: var(--surface)
+}
+
+#content-title {
+  background-color: var(--surface-raised);
+  color: var(--on-surface-raised);
+  border: none;
+  padding: 2px;
+  margin: none;
+  display: flex;
+  flex-direction: column;
+}
+
+#content-card {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  margin-bottom: 10px;
+}
