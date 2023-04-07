@@ -3,8 +3,6 @@
 #card-content {
   color: var(--bg);
   background-color: var(--content-bg);
-  padding: 1rem;
-  width: 80%;
   margin: auto;
   margin-bottom: 3%;
   font-size: 32ppt;

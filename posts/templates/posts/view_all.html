@@ -1,16 +1,17 @@
 {% extends 'core/base.html' %}
 
-{% block title %} Posts {% endblock %}
+
+{% block title %} {{ type }} {% endblock %}
 
 {% block breadcrumb %}
 <nav style="--bs-breadcrumb-divider: '';" aria-label="breadcrumb" class="px-2">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'index' %}" id="breadcrumb-link">Home</a></li>
-        <li class="breadcrumb-item" active aria-current="page">Posts</li>
+        <li class="breadcrumb-item"><a href="{% url 'posts' %}" id="breadcrumb-link">Posts</a></li>
+        <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-here">{{ type }}</li>
     </ol>
 </nav>
 {% endblock %}
-
 
 {% block content %}
 
@@ -18,79 +19,14 @@
 <link href="{% static 'css/posts.css' %}" rel="stylesheet">
 
 <div id="content" class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div id="card-content" class="rounded">
-                <div id="section-separator" class="container-fluid rounded card-title">
-                    <h1>Server Messages</h1>
-                </div>
-
-
-                {% for post in server_messages %}
-                <div id="content-card" class="card">
-
-                    <div class="card-header">{{ post.message_type }}</div>
-
-                    <div class="row g-0">
-
-                        {% if post.file_url %}
-                        <div class="col-md-4">
-                            <img loading="lazy" src="{{ post.file_url }}" class="rounded-4 img-fluid" alt="Trans Flag">
-                        </div>
-
-                        {% else %}
-                        <div class="col-md-4">
-                            <img loading="lazy"
-                                src="https://cdn.discordapp.com/icons/959551566388547676/a7df59d619696a88aea5032300166c19.webp?size=512"
-                                class="img-fluid rounded-4" alt="Trans Flag">
-                        </div>
-                        {% endif %}
-
-                        <div class="col-md-8">
-                            <div class="card-body">
-
-                                <h5 id="content-title" class="card-title rounded">{{ post.title }}</h5>
-
-                                {% if post.message_type == "Announcement" %}
-
-                                <p class="card-text">{{ post.content|truncatechars:500|linebreaks }}</p>
-                                <a href="{% url 'details' post.id %}">View More</a>
-
-                                {% else %}
-
-                                <a href="{% url 'details' post.id %}">View Message</a>
-
-                                {% endif %}
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-footer">
-                        {{ post.created_at|timesince }} ago
-
-                        <br>View More
-                    </div>
-
-                </div>
-                {% endfor %}
-            </div>
+    <div id="card-content" class="rounded">
+        <div id="section-separator" class="container rounded">
+            <h1>{{ type }}</h1>
         </div>
-
-        <div class="col-md-6">
-            <div id="card-content" class="rounded">
-                <div id="section-separator" class="container-fluid rounded">
-                    <div class="row">
-                        <div class="col-8 justify-self-end">
-                            <h1>User Content</h1>
-                        </div>
-                        <div class="col-4 align-self-center justify-content-end">
-                            <h2><a href="{% url 'view_all' 'user-content' %}">View all</a></h2>
-                        </div>
-                    </div>
-                </div>
-
-                {% for post in user_content %}
+        <div class="row">
+            {% for i in content %} <!-- content is like [[1,2,3], [4,5,6]] -->
+            <div class="col-md-6">
+                {% for post in i %}
                 <a href="{% url 'details' post.id %}" id="reddit-link-card">
                     <div id="content-card" class="card py-2">
                         {# <div class="card-header">Submitted by a person</div> #}
@@ -101,8 +37,6 @@
                             <div class="card-body">
                                 <h5 id="content-title" class="card-title rounded d-lg-flex">{{ post.title }}</h5>
                             </div>
-
-
 
                             {% if post.file_url %}
 
@@ -124,7 +58,8 @@
                             <div class="col-md-8">
 
                                 <div class="card-body">
-                                    <h5 id="content-title" class="card-title rounded d-lg-flex">{{ post.title }}</h5>
+                                    <h5 id="content-title" class="card-title rounded d-lg-flex">{{ post.title }}
+                                    </h5>
                                     <p class="card-text">{{ post.content|truncatechars:100|linebreaks }}</p>
                                 </div>
 
@@ -159,11 +94,11 @@
 
                             <br>View More
                         </div>
-
                     </div>
                 </a>
                 {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>

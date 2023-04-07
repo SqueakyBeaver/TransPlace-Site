@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core.views import index, resources, discord_login, discord_login_redirect, logout_view
-from posts.views import content_overview, content_detail
+from posts.views import content_overview, content_detail, content_all
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
@@ -27,7 +27,8 @@ urlpatterns = [
     path("about/", index, name="index"),
     path("resources/", resources, name="resources"),
     path("posts/", content_overview, name="posts"),
-    path("posts/<str:pk>/", content_detail, name="details"),
+    path("posts/list/<str:pk>/", content_all, name="view_all"),
+    path("posts/details/<str:pk>/", content_detail, name="details"),
 
     path("auth/login/", discord_login, name="login"),
     path("auth/login/redirect/", discord_login_redirect, name="login_redirect"),

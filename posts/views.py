@@ -14,7 +14,7 @@ def content_overview(request: HttpRequest):
     if not request.user.is_verified:
         return render(request, "posts/need-verification.html")
 
-    user_content = Post.objects.filter(message_type="User Content")[0:5]
+    user_content = Post.objects.filter(message_type="User Content")[0:3]
     server_messages = Post.objects.exclude(message_type="User Content")[0:3]
 
     return render(request, "posts/overview.html", {
@@ -36,11 +36,31 @@ def content_detail(request, pk):
     })
 
 
+@login_required(login_url="/auth/login/")
+def content_all(request: HttpRequest, pk):
+    if not request.user.is_verified:
+        return render(request, "posts/need-verification.html")
+
+    if pk == "user-content":
+        content = Post.objects.filter(message_type="User Content")
+        content = [content[:len(content) // 2], content[len(content) // 2:]]
+        type = "User Content"
+
+    if pk == "server-msgs":
+        content = Post.objects.exclude(message_type="User Content")
+        content = [content[:len(content) // 2], content[len(content) // 2:]]
+        type = "Server Messages"
+
+    return render(request, "posts/view_all.html", {
+        "content": content,
+        "type": type
+    })
+
+
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
-
 
     def perform_create(self, serializer):
         return serializer.save(owner=self.request.user)

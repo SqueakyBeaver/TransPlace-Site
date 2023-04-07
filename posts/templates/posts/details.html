@@ -1,44 +1,42 @@
 {% extends 'core/base.html' %}
 
-{% block title %} About Us {% endblock %}
+{% block title %} Post Detail {% endblock %}
 
 {% block content %}
 
 {% load static %}
 <link href="{% static 'css/posts.css' %}" rel="stylesheet">
 
-<div id="content">
+<div id="content" class="container">
     <div id="card-content" class="rounded">
         <div id="section-separator" class="container-fluid rounded card-title">
             <h1>{{ post.title }}</h1>
         </div>
 
 
-        <div id="content-card" class="card mb-3">
+        <div id="content-card" class="card">
 
             <div class="card-header">
                 {{ post.message_type }}
 
                 {% if post.reddit_url %}
-                <br><a href="{{ post.reddit_url }}">View on reddit</a>
+                <br><a href="{{ post.reddit_url }}" target="_blank">View on reddit</a>
                 {% endif %}
 
             </div>
 
             {% if post.reddit_url %}
-            <div class="">
+            <div style="height:50%;">
 
                 {% if post.file_url %}
 
-                <div class="">
-                    <img src="{{ post.file_url }}" class="rounded-4 img-fluid" alt="Trans Flag">
-                </div>
+                    <img src="{{ post.file_url }}" class="rounded-4 img-fluid"
+                        style="width:  50% !important; height: 50% !important;">
 
                 {% else %}
-                <div class="">
                     <img src="https://cdn.discordapp.com/icons/959551566388547676/a7df59d619696a88aea5032300166c19.webp?size=512"
-                        class="rounded-4 img-fluid" alt="TransPlace Logo">
-                </div>
+                        class="rounded-4 img-fluid" alt="TransPlace Logo"
+                        style="width:  50% !important; height: 50% !important;">
                 {% endif %}
 
             </div>
