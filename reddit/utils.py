@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from os import getenv
+from datetime import datetime
 from django.core.cache import cache
 import praw
 # import pprint
@@ -39,6 +40,7 @@ def get_messages(count=15):
             "content": None,
             "message_type": "User Content",
             "reddit_url": submission.shortlink,
+            "created_at": datetime.utcfromtimestamp(submission.created_utc)
         }
 
         # If the post is an image post
@@ -57,4 +59,9 @@ def get_messages(count=15):
         result.append(data)
 
     # 🙏
-    cache.set("messages", result)
+    cache.set("posts", result)
+
+    # For convenience
+    return result
+
+# get_messages()
