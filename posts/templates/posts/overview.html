@@ -16,11 +16,12 @@
 
 {% load static %}
 <link href="{% static 'css/posts.css' %}" rel="stylesheet">
+<script src="{% static 'js/posts_overview.js' %}"></script>
 
 <div id="content" class="container">
     <div class="row">
         <div class="col-md-6">
-            <div id="card-content" class="rounded">
+            <div id="card-content" class="rounded border-0">
                 <div id="section-separator" class="container-fluid rounded card-title">
                     <h1>Server Messages</h1>
                 </div>
@@ -96,7 +97,7 @@
                         {# <div class="card-header">Submitted by a person</div> #}
 
                         {% if post.reddit_url %}
-                        <div class="">
+                        <div>
 
                             <div class="card-body">
                                 <h5 id="content-title" class="card-title rounded d-lg-flex">{{ post.title }}</h5>

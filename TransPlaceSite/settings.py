@@ -63,6 +63,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "django.middleware.cache.UpdateCacheMiddleware", # Must be first
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -70,9 +71,14 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware", # Must be last
 ]
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+
+# CACHE_MIDDLEWARE_ALIAS = 
+# CACHE_MIDDLEWARE_SECONDS = 
+# CACHE_MIDDLEWARE_KEY_PREFIX = 
 
 ROOT_URLCONF = "TransPlaceSite.urls"
 
