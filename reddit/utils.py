@@ -6,7 +6,7 @@ import praw
 # import pprint
 
 
-def get_messages(count=15):
+def get_messages(count=16):
     """
     Get specified messages from the reddit
     :param count: The total amount of messages to get
